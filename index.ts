@@ -13,11 +13,13 @@ async function handler(_req: Request): Promise<Response> {
     handlePreFlightRequest();
   }
 
+  const url = new URL(_req.url);
+  let word1 = url.searchParams.get("word");
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
   const similarityRequestBody = JSON.stringify({
-    word1: "maison",
+    word1: word1,
     word2: "appartement",
   });
 
